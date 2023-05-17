@@ -1,0 +1,43 @@
+<style> 
+    .flexbox
+    {
+        display: flex;
+        background-color: #eee;
+        list-style-type: none;
+        padding: 0; 
+        justify-content: center; 
+        flex-direction: row;
+        gap: 10vw;
+    }
+
+    .flexitem 
+    {
+        min-width: 15vw;
+        flex: 0 1 100px;
+        overflow: hidden;
+    }
+
+    .flexitem a 
+    {
+        font-size: 1.5em;
+        text-decoration: none; 
+        color: #fff;
+        background-color: #444;
+        display: block;
+        text-align: center; 
+        line-height: 2em;
+    }
+
+    .flexitem a:hover 
+    {
+        background-color: #666;
+    }
+</style>
+<nav> 
+    <ul class = "flexbox">
+        <li class = "flexitem"><a href = "#"> Item One </a></li>
+        <li class = "flexitem"><a href = "#"> Item Two </a></li>
+        <li class = "flexitem"><a href = "#"> Item Three </a></li>
+        <li class = "flexitem"><a href = "#"> Item Four </a></li>
+    </ul>
+</nav>

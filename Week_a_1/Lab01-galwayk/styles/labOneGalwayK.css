@@ -1,0 +1,42 @@
+body 
+{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.flexblock
+{
+    display: flex;
+    height: 100vh;
+    gap: 10px;
+    background-color: #f00;
+}
+
+.colOne
+{
+    flex: 2 1 0px;
+    text-align: center; 
+    background: #0f0;
+}
+
+.colTwo 
+{
+    flex: 1 1 0px;
+    text-align: center; 
+    background: #08f;
+}
+
+#dimOne, #dimTwo 
+{
+    font-size: 1.5em;
+}
+
+@media (max-aspect-ratio: 1/1)
+{
+    .flexblock
+    {
+        flex-direction: column;
+    }
+
+}
