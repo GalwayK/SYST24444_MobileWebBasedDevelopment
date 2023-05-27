@@ -1,0 +1,92 @@
+.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: #ffeead;
+}
+
+html, body {
+  background-color: #ffeead;
+  margin: 10px;
+}
+
+.container > div:nth-child(1n) {
+  background-color: #96ceb4;	
+}
+
+.container > div:nth-child(3n) {
+  background-color: #88d8b0;
+}
+
+.container > div:nth-child(2n) {
+      background-color: #ff6f69;
+}
+
+.container > div:nth-child(4n) {
+      background-color: #ffcc5c;
+}
+
+.container 
+{
+    min-height: 100vh;
+    display: grid;
+    /* We can name our columns */
+    grid-template-columns:  [content-start] 1fr 1fr [content-end] 1fr;
+    grid-template-rows: [main-start] 10vh [main-content] auto [main-end] 10vh; 
+    /* grid-template-areas: 
+        "h h h"
+        "m c c"
+        "f f f"; */
+}
+
+/* .header 
+{
+    grid-area: h;
+}
+
+.footer
+{
+    grid-area: f;
+}
+
+.content
+{
+    grid-area: c;
+}
+
+.menu 
+{
+    grid-area: m;
+} */
+
+.header, .footer
+{
+    /* Note: grid-column-end and grid-row-end are exclusive. */
+    /* grid-column-start: content-start;
+    grid-column-end: content-end; */
+    grid-column: content;
+}
+
+.footer 
+{
+    grid-row: 3;
+}
+
+.header 
+{
+    grid-row: 1;
+}
+
+.menu
+{
+    grid-column: 3 / -1;
+    grid-row: 1 / -1;
+}
+
+.content 
+{
+    /* -1 is a shortcut for 'last column line' */
+    grid-column: span 2;
+    grid-row: 2;
+} 
