@@ -47,6 +47,8 @@ async function mainFunction()
         globalVariables.header = document.querySelector("header");
         globalVariables.slider = document.querySelector(".projects");
         globalVariables.sliderDots = document.querySelector(".dots");
+        globalVariables.contactsNav = document.querySelector(".contacts");
+        globalVariables.contactsContainer = document.querySelector(".contacts-container");
     }
 
     const implementHeaderEffects = function()
@@ -168,6 +170,48 @@ async function mainFunction()
         globalVariables.sliderDots.addEventListener("click", handleDotClick);
     };
 
+    const implementContactTabs = function()
+    {
+        if (!globalVariables.contactsNav)
+        {
+            return null;
+        }
+
+        const handleTabChange = function(event)
+        {
+            const target = event.target?.closest(".contact-header");
+            if (target)
+            {
+                [...target.parentElement.children].forEach(sibling => 
+                    sibling.classList.remove("contact-header-active"));
+
+                target.classList.add("contact-header-active");
+
+                const numContact = parseInt(target.dataset.contact);
+                
+                const arrContacts =  
+                    [...globalVariables.contactsContainer.children];
+
+                arrContacts.forEach(hideAllContacts);
+
+                arrContacts[numContact].classList.add("contact-active");
+            }
+            else 
+            {
+                return null;
+            }
+        }
+
+        const hideAllContacts = function(divContact)
+        {
+            divContact.classList.remove("contact-active");
+        }
+
+        console.log("Implementing tabs.");
+        
+        globalVariables.contactsNav.addEventListener("click", handleTabChange);
+    }
+
     await loadTemplateSections();
 
     mapGlobalVariables();
@@ -175,6 +219,8 @@ async function mainFunction()
     implementHeaderEffects();
 
     implementProjectSliders();
+
+    implementContactTabs();
 }
 
 
