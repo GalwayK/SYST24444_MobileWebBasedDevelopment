@@ -7,7 +7,7 @@ body
 
     grid-template-columns: 300px auto;
     grid-template-rows: 1fr 8fr 2fr;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 header, footer
@@ -37,7 +37,7 @@ section
     grid-column-end: 2;
     background-color: #eff3ee;
     color: #585858;
-    border-right: #58A4B0 thin dashed
+    border-right: #58A4B0 thin dashed;
 }
 
 .content 
@@ -63,7 +63,6 @@ article, section
 
 .header-flex, .footer-flex
 {
-    /* TODO: Use JavaScript to lock sections at size of default page. */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,30 +176,73 @@ article, section
 
 .content-header
 {
-    height: 10%;
+    margin: 3vh 5vw;
+    height: 5%;
     width: 100%;
     text-align: left;
-
 }
 
 .projects 
 {
+    text-align: left;
     width: 100%;
     display: flex; 
     justify-content: center;
-    align-items: center;
-    border: thin black solid;
-    height: 60%;
+    align-items: start;
+    height: 60vh;
 }
 
 .project 
 {
     position: absolute;
-    border: thin gray dotted;
-    height: 200px;
-    max-width: 800px;
+    margin-top: 3vh;
+    border: thin #CFCFCF solid;
+    background-color: rgba(255, 255, 255, 0.733);
+    height: fit-content;
+    max-width: 40vw;
     transition: transform 1s;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.project > p
+{
+    margin: auto 1vw;
+    width: 30vw;
+}
+
+.project > h3 
+{
+    text-align: center;
+    width: 30vw;
+}
+
+.project-image 
+{
+    object-fit: cover;
+    margin-bottom: auto;
+}
+
+.image-container
+{
+    width: 100%;
+}
+
+.project-link 
+{
+    background-color: #054A91;
+    font-size: 1.2rem;
+    margin: 1vh auto 1vh 1.5vw;
+    padding: 10px 20px;
+}
+
+.project-link > a
+{
+    text-decoration: none;
+    color: white;
 }
 
 .dots 
@@ -291,8 +333,6 @@ article, section
 {
     opacity: 1;
 }
-
-
 
 /* .contact 
 {
