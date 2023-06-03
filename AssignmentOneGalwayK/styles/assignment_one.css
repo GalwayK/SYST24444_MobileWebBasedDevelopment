@@ -1,3 +1,12 @@
+/*
+File: assignment_one.css
+Student: Kyle Galway 
+Student Number: 991418738
+Description: This file contains all of the standard CSS styles for the 
+application. All styles have, where possible, been grouped together to 
+minimize repetition.
+*/
+
 body 
 {
     all: unset;
@@ -6,6 +15,15 @@ body
     grid-template-columns: 300px 1fr;
     grid-template-rows: 1fr 8fr 2fr;
     overflow-x: hidden;
+}
+
+.contact-link > a, .project-link > a
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact 
@@ -32,6 +50,12 @@ footer, .inner-content, .dots
     it is the most convenient option in the case of the contact buttons, 
     and there is nowhere in the site where it will create issues. */
     background-color: #054A91 !important;
+    color: white !important;
+}
+
+.header-link:hover, .project-link *:hover, .contact-link *:hover
+{
+    background-color: #26598d;
 }
 
 section, .content
@@ -40,7 +64,7 @@ section, .content
     color: #444444;
 }
 
-.contact, .about, .project 
+.contact, .about, .project, .contact-header
 {
     background-color: rgba(255, 255, 255, 0.733);
 }
@@ -67,7 +91,8 @@ article, section, .contacts-container
 
 .content, .header-flex, .footer-flex, .header-links, .footer-links, 
     .sidebar-flex, .projects, .dots, .contacts-container, .header-button, 
-    .header-link, .project, .contact-active
+    .header-link, .project, .contact-active, .contact-link > a, 
+    .project-link > a
 {
     display: flex;
 }
@@ -93,7 +118,7 @@ article, section, .contacts-container
 }
 
 .header-flex, .footer-flex, .header-links, .sidebar-flex, .header-button,
-    .header-link, .projects 
+    .header-link, .projects, .contact-link > a, .project-link > a
 {
     justify-content: center;
 }
@@ -104,7 +129,8 @@ article, section, .contacts-container
 }
 
 .content, .header-flex, .footer-flex, .header-links, .sidebar-flex, 
-    .header-button, .header-link, .project, .contact 
+    .header-button, .header-link, .project, .contact, .contact-link > a, 
+    .project-link > a
 {
     align-items: center;
 }
@@ -116,7 +142,7 @@ article, section, .contacts-container
 }
 
 .content, .header-flex, .header-links, .include > div, .header-button, 
-    .header-link
+    .header-link, .contact-link > a, .project-link > a
 {
     height: 100%;
 }
@@ -126,12 +152,13 @@ article, section, .contacts-container
     height: 300px;
 }
 
-.projects, .project-image, .image-container, .contact-image-container 
+.projects, .project-image, .image-container, .contact-image-container, 
+    .contact-link > a, .project-link > a, .header-link
 {
     width: 100%;
 }
 
-.content-header, .about, .project, .contacts, .contacts-container, .contact 
+.content-header, .project, .contacts, .contacts-container, .contact 
 {
     width: 500px;
 }
@@ -160,6 +187,12 @@ article, section, .contacts-container
 {
     position: absolute;
 }
+
+.about, .project, .contact
+{
+    overflow-y: auto;
+}
+
 
 /* 
 
@@ -238,6 +271,11 @@ section
     margin: 5px;
 }
 
+.sidebar-header 
+{
+    font-size: 2rem;
+}
+
 .sidebar-quotation, .project-image
 {
     margin-bottom: auto;
@@ -261,13 +299,14 @@ section
 .content-header
 {
     height: 5%;
+    font-size: 2.2rem;
 }
 
 .about 
 {
     padding: 15px 25px;
-    overflow-y: auto;
-    max-height: 65%;
+    width: 500px;
+    max-height: 500px;
 }
 
 .projects 
@@ -299,7 +338,8 @@ section
 {
     font-size: 1.2rem;
     margin: 1vh auto 1vh 1.5vw;
-    padding: 10px 20px;
+    height: 50px;
+    width: 150px;
 }
 
 .dot
@@ -321,9 +361,10 @@ section
 
 .contact-header
 {
+    color: #054A91;
     font-size: 1.1rem;
-    background-color: #D4F5F5;
-    border-radius: 20px;
+    border: 2px #054A91 solid;
+    border-radius: 50px;
     margin: 0 1px;
 }
 
@@ -376,9 +417,14 @@ section
 @media only screen and (min-width: 970px) 
 {
     .project, .about, .content-header, .contact, .contact-image-container, 
-        .contacts-container, .contacts, .about
+        .contacts-container, .contacts
     {
         width: 600px;
+    }
+
+    .about 
+    {
+        width: 575px;
     }
 }
 
@@ -386,9 +432,14 @@ section
 @media only screen and (min-width: 1070px) 
 {
     .project, .about, .content-header, .contact, .contact-image-container, 
-        .contacts-container, .contacts, .about
+        .contacts-container, .contacts
     {
         width: 700px;
+    }
+
+    .about 
+    {
+        width:675px;
     }
 
 }
@@ -396,9 +447,15 @@ section
 
 @media only screen and (max-width: 870px) 
 {
-    .project, .about, .about, .content-header
+    .project, .content-header
     {
         width: 300px;
+    }
+
+    .about 
+    {
+        padding: 15px 10px;
+        width: 280px;
     }
 
     .contact, .contact-image-container, .contacts-container, .contacts
@@ -433,7 +490,7 @@ section
 
     .about
     {
-        width: 200px;
+        width: 225px;
     }
 
     body 

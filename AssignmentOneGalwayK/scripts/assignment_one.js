@@ -1,5 +1,14 @@
 "use strict";
 
+/*
+File: assignment_one.js
+Student: Kyle Galway 
+Student Number: 991418738
+Description: This file contains all of the JavaScript used in this application. 
+This includes the dynamic loading of HTML template pages, and some DOM 
+manipulation for advanced display and layouts.
+*/
+
 const globalVariables = new Map();
 
 document.addEventListener("DOMContentLoaded", mainFunction);
