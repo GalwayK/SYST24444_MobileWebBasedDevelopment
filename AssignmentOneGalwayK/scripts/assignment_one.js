@@ -149,8 +149,9 @@ async function mainFunction()
         {
             console.log(buttonDot);
             parseInt(buttonDot.dataset.slide) !== currentSlide
-                ? buttonDot.style.backgroundColor = "#eff3ee"
-                : buttonDot.style.backgroundColor = "#0077B6";
+                ? buttonDot.style.backgroundColor = "rgba(255, 255, 255, 0.733)"
+                : buttonDot.style.backgroundColor = "#054A91";
+                
         };
 
         const handleDotClick = function(event)
@@ -210,7 +211,7 @@ async function mainFunction()
         console.log("Implementing tabs.");
         
         globalVariables.contactsNav.addEventListener("click", handleTabChange);
-    }
+    };
 
     await loadTemplateSections();
 

@@ -12,22 +12,34 @@
     <header class = "include include-header" data-href = "templates/header.html"> </header>
     <section class = "include include-section" data-href = "templates/sidebar.html"></section>
     <article class = "content"> 
-        <h2 class = "content-child content-header"> Contact Me! </h2>
-        <nav class = "contacts"> 
+        <h2 class = "content-header"> Contact Me! </h2>
+        <nav class = "inner-content contacts"> 
             <button class = "contact-header contact-header-active" data-contact = "0"> LinkedIn </button>
             <button class = "contact-header" data-contact = "1"> Github </button>
             <button class = "contact-header" data-contact = "2"> Twitter </button>
             <div class = contacts-container>
                 <div class = "contact contact-active"> 
-                    <p> LinkedIn </p>
+                    <h3> Check out my LinkedIn! </h3>
+                    <button class = "contact-link"><a href = "https://www.linkedin.com/in/kylegalway/">
+                        View LinkedIn 
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-linkedin.svg" class = contact-image></div>
                 </div>
 
                 <div class = "contact"> 
-                    <p> Github </p>
+                    <h3> Take a look at my project repositories! </h3>
+                    <button class = "contact-link"><a href = "https://github.com/GalwayK">
+                        View GitHub
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-github.svg" class = contact-image></div>
                 </div>
 
                 <div class = "contact">
-                    <p> Twitter </p>
+                    <h3> Send me a message on Twitter! </h3>
+                    <button class = "contact-link"><a href = "https://twitter.com/EasternEagle7">
+                        View Twitter 
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-twitter.svg" class = contact-image></div>
                 </div>
             </div>
         </nav>
