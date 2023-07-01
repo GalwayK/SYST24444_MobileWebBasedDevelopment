@@ -1,0 +1,45 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: verdana;
+    font-size: 1rem;
+}
+
+header, footer 
+{
+    min-height: 10vh;
+}
+
+main 
+{
+    min-height: 90vh;
+}
+
+table, tr, td, th
+{
+    padding: 4px 10px;
+    border-collapse: collapse;
+    border: thin black solid;
+}
+
+table 
+{
+    /* The requirements say to make the width 100% of the device width, 
+    but this causes the table to overlap with the scroll bar. I decided to 
+    go with a width of 98 percent of the viewport instead. */
+    min-width: 98vw;
+}
+
+td, th 
+{
+    width: 25%;
+}
+
+td 
+{
+    text-align: left;
+}

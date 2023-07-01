@@ -1,0 +1,200 @@
+"use strict";
+console.log("Insertion successful!");
+loadStudents();
+
+function loadStudents()
+{
+    const convertTextToJSON = (strResponse) => strResponse.json();
+        
+    const loadContent = function(jsonStudents)
+    {
+        for (const objStudent of jsonStudents)
+        {
+            let strStudentHTML = `<li> ${objStudent.firstName} `
+                + `${objStudent.lastName} </li>`;
+            globalObject.get("listStudents")
+                .insertAdjacentHTML('beforeend', strStudentHTML);
+        }
+    };
+
+    function catchError(error)
+    {
+        console.log(`An error has occured:\n${error.message}`);
+    }
+
+    async function loadStudentsAsync()
+    {
+        try 
+        {
+            const jsonStudents = returnStudents();
+            loadContent(jsonStudents);
+        }
+        catch (error)
+        {
+            catchError(error);
+        }
+    }
+
+    loadStudentsAsync();
+}
+
+function returnStudents()
+{
+    return [
+        {
+            "firstName": "Cute",
+            "lastName": "Agrawal",
+            "email": "agrawacu@sheridancollege.ca"
+        },
+        {
+            "firstName": "Hiba",
+            "lastName": "Alashraf",
+            "email": "alashrab@sheridancollege.ca"
+        },
+        {
+            "firstName": "Aleksandr",
+            "lastName": "Arsentev",
+            "email": "arsentev@sheridancollege.ca"
+        },
+        {
+            "firstName": "Aaron",
+            "lastName": "Corpuz",
+            "email": "corpuzaa@sheridancollege.ca"
+        },
+        {
+            "firstName": "David Gilvan",
+            "lastName": "Dos Santos Souza",
+            "email": "dossanda@sheridancollege.ca"
+        },
+        {
+            "firstName": "Jayvyn",
+            "lastName": "Fashanu",
+            "email": "fashanuj@sheridancollege.ca"
+        },
+        {
+            "firstName": "Arif",
+            "lastName": "Faysal",
+            "email": "faysal@sheridancollege.ca"
+        },
+        {
+            "firstName": "Kyle",
+            "lastName": "Galway",
+            "email": "galwayk@sheridancollege.ca"
+        },
+        {
+            "firstName": "Ozkan",
+            "lastName": "Garpli",
+            "email": "garpli@sheridancollege.ca"
+        },
+        {
+            "firstName": "Ecem",
+            "lastName": "Gulec",
+            "email": "gulec@sheridancollege.ca"
+        },
+        {
+            "firstName": "Yehor",
+            "lastName": "Husieiev",
+            "email": "husieiey@sheridancollege.ca"
+        },
+        {
+            "firstName": "Parul",
+            "lastName": "Jolly",
+            "email": "jollypa@sheridancollege.ca"
+        },
+        {
+            "firstName": "Manpreet Kaur",
+            "lastName": "Kaur",
+            "email": "kau11451@sheridancollege.ca"
+        },
+        {
+            "firstName": "Navneet",
+            "lastName": "Kaur",
+            "email": "kau11169@sheridancollege.ca"
+        },
+        {
+            "firstName": "Navneet",
+            "lastName": "Kaur",
+            "email": "kau11840@sheridancollege.ca"
+        },
+        {
+            "firstName": "Ravneet",
+            "lastName": "Kaur",
+            "email": "kaur9720@sheridancollege.ca"
+        },
+        {
+            "firstName": "Sukhleen",
+            "lastName": "Kaur",
+            "email": "kau10960@sheridancollege.ca"
+        },
+        {
+            "firstName": "Sharif",
+            "lastName": "Kulmie",
+            "email": "kulmie@sheridancollege.ca"
+        },
+        {
+            "firstName": "Benedict",
+            "lastName": "Leung",
+            "email": "leungb@sheridancollege.ca"
+        },
+        {
+            "firstName": "Haotian",
+            "lastName": "Li",
+            "email": "lihaoti@sheridancollege.ca"
+        },
+        {
+            "firstName": "Omar",
+            "lastName": "Musleh",
+            "email": "musleho@sheridancollege.ca"
+        },
+        {
+            "firstName": "Shubham",
+            "lastName": "Padhya",
+            "email": "padhyas@sheridancollege.ca"
+        },
+        {
+            "firstName": "Minh Ha",
+            "lastName": "Pham",
+            "email": "phaminhh@sheridancollege.ca"
+        },
+        {
+            "firstName": "Abarna",
+            "lastName": "Premachandran",
+            "email": "premacab@sheridancollege.ca"
+        },
+        {
+            "firstName": "Amitojh",
+            "lastName": "Saini",
+            "email": "saiamito@sheridancollege.ca"
+        },
+        {
+            "firstName": "Meharvaan",
+            "lastName": "Singh",
+            "email": "simeharv@sheridancollege.ca"
+        },
+        {
+            "firstName": "Anshul",
+            "lastName": "Sood",
+            "email": "soodansh@sheridancollege.ca"
+        },
+        {
+            "firstName": "Ahmad Zaki",
+            "lastName": "Sultani",
+            "email": "sulahmad@sheridancollege.ca"
+        },
+        {
+            "firstName": "Pizaan Maheriyar",
+            "lastName": "Tadiwala",
+            "email": "tadiwala@sheridancollege.ca"
+        },
+        {
+            "firstName": "Walter",
+            "lastName": "Yu",
+            "email": "yuwal@sheridancollege.ca"
+        },
+        {
+            "firstName": "Fulong",
+            "lastName": "Zhong",
+            "email": "zhongfu@sheridancollege.ca"
+        }
+        ]
+};

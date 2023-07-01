@@ -1,0 +1,57 @@
+<!--
+File: contact.html
+Student: Kyle Galway 
+Student Number: 991418738
+Description: This file contains the layout and content for the contact section
+of the website. It uses a tab layout to handle display of content.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src = "scripts/assignment_one.js"></script>
+    <link rel = stylesheet type = "text/css" href = "styles/assignment_one.css">
+    <title> Kyle Galway Portfolio Page - Contact </title>
+</head>
+<body>
+    <header class = "include include-header" data-href = "templates/header.html"> </header>
+    <section class = "include include-section" data-href = "templates/sidebar.html"></section>
+    <article class = "content"> 
+        <h2 class = "content-header"> Contact Me! </h2>
+        <nav class = "inner-content contacts"> 
+            <button class = "contact-header contact-header-active" data-contact = "0"> LinkedIn </button>
+            <button class = "contact-header" data-contact = "1"> Github </button>
+            <button class = "contact-header" data-contact = "2"> Twitter </button>
+            <div class = contacts-container>
+                <div class = "contact contact-active"> 
+                    <h3> Check out my LinkedIn! </h3>
+                    <button class = "contact-link"><a href = "https://www.linkedin.com/in/kylegalway/">
+                        <span> View LinkedIn </span>
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-linkedin.svg" class = contact-image></div>
+                </div>
+
+                <div class = "contact"> 
+                    <h3> Take a look at my project repositories! </h3>
+                    <button class = "contact-link"><a href = "https://github.com/GalwayK">
+                        <span> View GitHub </span>
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-github.svg" class = contact-image></div>
+                </div>
+
+                <div class = "contact">
+                    <h3> Send me a message on Twitter! </h3>
+                    <button class = "contact-link"><a href = "https://twitter.com/EasternEagle7">
+                        <span> View Twitter </span>
+                    </button></a>
+                    <div class = contact-image-container><img src = "images/icon-twitter.svg" class = contact-image></div>
+                </div>
+            </div>
+        </nav>
+    </article>
+    <footer class = "include include-footer" data-href = "templates/footer.html"> </footer>
+</body>
+</html>
