@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.songho.ca/js/Logger.js"></script>
+    <title>Kyle Galway Assignment Two - Line Intsersection Calculator </title>
+    <link rel = stylesheet type = text/css href = "styles/styles.css">
+    <script src = "scripts/script.js"></script>
+</head>
+<body>
+    <header> 
+        <h1> Line Intersection Calculator</h1>
+    </header>
+
+    <main> 
+        <canvas class = grid></canvas>
+
+        <div class = lineMenu>
+            <h2 class = menuHeader> Line Intersection Menu </h2>
+            <fieldset class = lineOne>
+                <legend> Line One </legend>
+                <div class = "sliders"> 
+                    <h3 class = lineHeader> P1 </h3>
+                    <div><span> x: </span><input class = slider type = range id = xCorP1 min = -10 max = 10 step="0.1"><span id = xLabP1 class = label> NULL </span></div>
+                    <div><span> y: </span><input class = slider type = range id = yCorP1 min = -10 max = 10 step="0.1"><span id = yLabP1 class = label> NULL </span></div>
+                </div>
+
+                <div class = "sliders"> 
+                    <h3 class = lineHeader> P2 </h3>
+                    <div><span> x: </span><input class = slider type = range id = xCorP2 min = -10 max = 10 step="0.1"><span id = xLabP2 class = label> NULL </span></div>
+                    <div><span> y: </span><input class = slider type = range id = yCorP2 min = -10 max = 10 step="0.1"><span id = yLabP2 class = label> NULL </span></div>
+                </div>
+
+                <p class = parametric> Parametric Form: <span class = "line-1-parametric"> </span></p>
+            </fieldset>
+
+            <fieldset class = lineTwo>
+                <legend> Line Two </legend>
+                <div class = "sliders"> 
+                    <h3 class = lineHeader> Q1 </h3>
+                    <div><span> x: </span><input class = slider type = range id = xCorQ1 min = -10 max = 10 step="0.1"><span id = xLabQ1 class = label> NULL </span></div>
+                    <div><span> y: </span><input class = slider type = range id = yCorQ1 min = -10 max = 10 step="0.1"><span id = yLabQ1 class = label> NULL </span></div>
+                </div>
+
+                <div class = "sliders"> 
+                    <h3 class = lineHeader> Q2 </h3>
+                    <div><span> x: </span><input class = slider type = range id = xCorQ2 min = -10 max = 10 step="0.1"><span id = xLabQ2 class = label> NULL </span></div>
+                    <div><span> y: </span><input class = slider type = range id = yCorQ2 min = -10 max = 10 step="0.1"><span id = yLabQ2 class = label> NULL </span></div>
+                </div>
+                <p class = parametric> Parametric Form: <span class = "line-2-parametric"> </span></p>
+            </fieldset>
+
+            <fieldset class = "dataDisplay">
+                <legend> Intersection Point </legend>
+                <div class = "intersection"> (x, y) </div>
+            </fieldset>
+
+            <input class = "btnReset" type = button value = "RESET POINTS" />
+        </div>
+
+    </main>
+
+    <footer> 
+        <h2> By Kyle Galway </h2>
+    </footer>
+</body>
+</html>

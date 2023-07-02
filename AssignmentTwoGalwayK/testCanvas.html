@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Canvas</title>
+
+<!-- JS -->
+<script src="https://www.songho.ca/js/Logger.js"></script>
+<script>
+// global object
+go = {};
+
+// constants
+const DIM = 10; // virtual screen dimension, -10 ~ +10
+
+
+///////////////////////////////////////////////////////////////////////////////
+// main entry point
+document.addEventListener("DOMContentLoaded", () =>
+{
+    log("Page is loaded");
+
+    // get canvas element and remember it
+    go.canvas = document.getElementById("canvasView");
+
+    // init controls
+    initControls();
+
+    // register resize event
+    window.addEventListener("resize", handleResize);
+    handleResize(); // initial call
+});
+
+
+///////////////////////////////////////////////////////////////////////////////
+function initControls()
+{
+    // init and register input event
+    let labelX = document.getElementById("labelX");
+    let rangeX = document.getElementById("rangeX");
+    labelX.innerText = rangeX.value;    // must init because browser will cache the value
+    go.x = parseFloat(rangeX.value);
+
+    rangeX.addEventListener("input", () =>
+    {
+        labelX.innerText = rangeX.value;
+        go.x = parseFloat(rangeX.value);    // must convert to numeric
+        draw(); // redraw whenever slider changed
+    });
+
+    let labelY = document.getElementById("labelY");
+    let rangeY = document.getElementById("rangeY");
+    labelY.innerText = rangeY.value;    // must init because browser will cache the value
+    go.y = parseFloat(rangeY.value);
+    rangeY.addEventListener("input", () =>
+    {
+        labelY.innerText = rangeY.value;
+        go.y = parseFloat(rangeY.value);    // must convert to numeric
+        draw(); // redraw whenever slider changed
+    });
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function handleResize()
+{
+    // resize canvas dimension
+    console.dir(go.canvas);
+
+    go.canvas.width = go.canvas.clientWidth;
+    go.canvas.height = go.canvas.clientHeight;
+    console.log("Canvas Resized: " + go.canvas.width + " x " + go.canvas.height);
+    if(go.canvas.width == 0 || go.canvas.height == 0)
+    {
+        return;
+    }
+
+    // compute conversion scale from virtual dimension to actual dimension
+    go.aspectRatio = go.canvas.width / go.canvas.height;   // w/h
+    if(go.aspectRatio > 1)
+    {
+        go.dimScale = go.canvas.height / (DIM * 2);
+        go.dimTransX = DIM * go.aspectRatio;
+        go.dimTransY = DIM;
+    }
+    else
+    {
+        go.dimScale = go.canvas.width / (DIM * 2);
+        go.dimTransX = DIM;
+        go.dimTransY = DIM / go.aspectRatio;
+    }
+
+    // redraw whenever resized
+    draw();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function draw()
+{
+    // get 2D Rendering Context (RC) from canvas
+    // all drawing calls go through this
+    let ctx = go.canvas.getContext("2d");
+
+    // clear full screen
+    ctx.clearRect(0, 0, go.canvas.width, go.canvas.height);
+
+    // push current state
+    ctx.save();
+
+    // transform virtual dimension to actual dimension
+    // then move the origin to center
+    ctx.scale(go.dimScale, -go.dimScale);       // flip vertically
+    ctx.translate(go.dimTransX, -go.dimTransY);
+
+    // from now, draw graphics in virtual coordinates; -DIM ~ +DIM
+    // draw grid lines
+    drawGrid(ctx);
+    drawAxis(ctx);
+
+    // draw points
+    drawPoints(ctx);
+
+    // draw text at last
+    drawText(ctx);
+
+    // pop the state
+    ctx.restore();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function drawGrid(ctx)
+{
+    // compute max x/y ranges
+    const MAX_X = Math.ceil(go.dimTransX);
+    const MAX_Y = Math.ceil(go.dimTransY);
+    ctx.lineWidth = 0.5 / go.dimScale;
+
+    // horizontal lines
+    for(let y = -MAX_Y; y <= MAX_Y; ++y)
+    {
+        ctx.beginPath();
+        if(y % 5 == 0)
+            ctx.strokeStyle = "#000000";
+        else
+            ctx.strokeStyle = "#888888";
+        ctx.moveTo(-MAX_X, y);
+        ctx.lineTo(MAX_X, y);
+        ctx.stroke();
+    }
+    // virtical lines
+    for(let x = -MAX_X; x <= MAX_X; ++x)
+    {
+        ctx.beginPath();
+        if(x % 5 == 0)
+            ctx.strokeStyle = "#000000";
+        else
+            ctx.strokeStyle = "#888888";
+        ctx.moveTo(x, -MAX_Y);
+        ctx.lineTo(x,  MAX_Y);
+        ctx.stroke();
+    }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function drawAxis(ctx)
+{
+    // compute max x/y
+    const X = go.dimTransX;
+    const Y = go.dimTransY;
+
+    ctx.beginPath();
+    ctx.strokeStyle = "#000000";
+    ctx.lineWidth = 2 / go.dimScale;
+    ctx.moveTo(-X, 0);    // horizontal line
+    ctx.lineTo(X, 0);
+    // arrow
+    ctx.moveTo(X-0.3, -0.2);
+    ctx.lineTo(X, 0);
+    ctx.lineTo(X-0.3, 0.2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(0,  Y);    // vertical line
+    ctx.lineTo(0, -Y);
+    // arrow
+    ctx.moveTo(-0.2, Y-0.3);
+    ctx.lineTo(0, Y);
+    ctx.lineTo(0.2, Y-0.3);
+    ctx.stroke();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function drawText(ctx)
+{
+    ctx.save();
+
+    ctx.scale(1, -1);   // flip vertically
+    ctx.font = "0.8px sans-serif";
+    ctx.fillStyle = "#000000";
+    ctx.fillText("0", 0.2, 0.8);
+    ctx.fillText("x", go.dimTransX-0.5, 0.8);
+    ctx.fillText("y", 0.2, -go.dimTransY+0.6);
+
+    ctx.restore();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+function drawPoints(ctx)
+{
+    const R = 0.5;  // radius
+    ctx.beginPath();
+    ctx.fillStyle = "#ff0000";
+    ctx.arc(go.x, go.y, R, 0, Math.PI*2);
+    ctx.fill();
+}
+
+</script>
+
+<!-- CSS -->
+<style>
+body {
+    margin:0;
+    padding:0;
+    height:100vh;
+    box-sizing:border-box;
+}
+.flexblock {
+    display:flex;
+    height:calc(100% - 20px);
+    gap:10px;
+    padding:10px;
+    background-color:#f00;
+}
+#canvasView {
+    flex:1 1 auto;
+    min-width:0;    /* to resize canvas properly */
+    min-height:0;   /* to resize canvas properly */
+    border:1px solid #888;
+    background-color:#ff0;
+}
+#controlblock {
+    flex:0 0 500px;
+    background-color:#8ff;
+}
+.row {
+    display:flex;
+    gap:5px;
+    justify-content:center; /* virtical align */
+    margin-bottom:5px;
+}
+.col1 {
+    flex:0 0 auto;
+}
+.col2 {
+    flex:1 1 100%;
+}
+.col3 {
+    flex:0 0 2em;
+}
+</style>
+
+</head>
+<body>
+<div class="flexblock">
+
+<canvas id="canvasView">
+</canvas>
+
+
+
+<!-- CONTROLBLOCK ========================================================= -->
+<div id="controlblock">
+<h3>Test Canvas</h3>
+<p>
+Change the sliders to move the point in the canvas.
+</p>
+
+<fieldset>
+<legend>Point</legend>
+<!-- X -->
+<div class="row">
+<span class="col1">x:</span><input type="range" class="col2" id="rangeX" min="-10" max="10" step="0.1" value="0"><label id="labelX" class="col3">0</label>
+</div>
+<!-- Y -->
+<div class="row">
+<span class="col1">y:</span><input type="range" class="col2" id="rangeY" min="-10" max="10" step="0.1" value="0"><label id="labelY" class="col3">0</label>
+</div>
+</fieldset>
+
+</div>
+<!-- END OF CONTROLBLOCK ================================================== -->
+
+
+
+</div>
+<!-- END OF FLEXBLOCK -->
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+
+body 
+{
+    min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+h1, h2, h3 
+{
+    margin: 3px;
+}
+
+.grid 
+{
+    flex:1 1 auto;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 800px;
+}
+
+.lineMenu
+{
+    display: grid; 
+    grid-template-columns: 1fr;
+    grid-template-rows: .3fr 1fr 1fr .5fr .3fr;
+    gap: 4px;
+    min-width: 390px;
+    max-width: 400px;
+}
+
+fieldset 
+{
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0px;
+    padding: 3px;
+}
+
+.lineOne, .lineTwo
+{
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5fr .5fr;
+    gap: 4px;
+}
+
+.sliders 
+{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+}
+
+.parametric, .intersection
+{
+    margin: 10px 5px;
+    text-align: left;
+}
+
+.parametric 
+{
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.menuHeader 
+{
+    grid-row: 1;
+}
+
+.lineOne 
+{
+    grid-row: 2;
+}
+
+.lineTwo 
+{
+    grid-row: 3;
+}
+
+.dataDisplay 
+{
+    grid-row: 4;
+}
+
+.btnReset 
+{
+    grid-row: 5;
+}
+
+.lineHeader 
+{
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+header, footer 
+{
+    min-height: 9vh;
+    border: thin black solid;
+}
+
+header, footer, main 
+{
+    width: 100%;
+}
+
+main 
+{
+    border: thin red solid;
+    min-height: 80vh;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
