@@ -22,7 +22,6 @@ globalObject.Q2.sliders = {};
 globalObject.arrPoints = ["P1", "P2", "Q1", "Q2"];
 globalObject.arrColors = ["#000000", "#999999", "#ff0000", "#0000ff", "#00ff00", "#00ffff", "#ffff00", "#ff00ff"];
 
-
 document.addEventListener("DOMContentLoaded", main);
 
 function main()
@@ -70,7 +69,7 @@ function updateControls()
 
         console.log(globalObject[point]);
     }
-    draw();
+    handleResize();
 }
 
 function handleResize()
@@ -79,9 +78,6 @@ function handleResize()
 
     globalObject.grid.width = globalObject.grid.clientWidth;
     globalObject.grid.height = globalObject.grid.width;
-
-    console.log(window.innerHeight);
-    console.log(window.innerWidth);
 
     if (window.innerWidth > window.innerHeight)
     {
