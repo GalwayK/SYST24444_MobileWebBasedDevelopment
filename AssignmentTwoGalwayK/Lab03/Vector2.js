@@ -7,25 +7,59 @@ class Vector2
 
     constructor(x=0, y=0)
     {
+        x = parseFloat(x);
+        y = parseFloat(y);
         this.x = x;
         this.y = y;
     }
 
     set(x, y)
     {
+        x = parseFloat(x);
+        y = parseFloat(y);
         this.x = x;
         this.y = y;
         return this;
     }
 
-    clone()
+    getFixedX(numDecimal=3)
     {
-        return new Vector2(this.x, this.y);
+        return this.x.toPrecision(numDecimal);
+    }
+
+    getFixedY(numDecimal=3)
+    {
+        return this.y.toPrecision(numDecimal);
     }
 
     toString()
     {
-        return `Coordinates: (${this.x.toFixed(3)}, ${this.y.toFixed(3)})`;
+        return `Coordinates: ${this.coordinates}`;
+    }
+
+    get coordinates()
+    {
+        return `(${this.getFixedX()}, ${this.getFixedY()})`;
+    }
+
+    length()
+    {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
+
+    distance(that)
+    {
+        return Math.sqrt(Math.pow(this.x - that.x, 2) + Math.pow(this.y - that.y, 2));
+    }
+
+    dot(that)
+    {
+        let dot = NaN;
+        if (that instanceof Vector2)
+        {
+            dot = this.x * that.x + this.y * that.y;
+        }
+        return dot;
     }
 
     clone()
@@ -42,6 +76,7 @@ class Vector2
         const sumY = this.y + that.y;
 
         this.set(sumX, sumY);
+        return this;
     }
 
     subtract(that)
@@ -50,6 +85,7 @@ class Vector2
         const differenceY = this.y - that.y;
 
         this.set(differenceX, differenceY);
+        return this;
     }
 
     scale(scalar)
@@ -58,6 +94,7 @@ class Vector2
         const productY = this.y * scalar;
 
         this.set(productX, productY);
+        return this;
     }
 
     divide(divisor)
@@ -65,6 +102,8 @@ class Vector2
         const reciprocal = 1.0 / divisor
 
         this.scale(reciprocal);
+
+        return this;
     }
 
     normalize()
@@ -73,5 +112,6 @@ class Vector2
         const normalizedY = this.y / Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
 
         this.set(normalizedX, normalizedY);
+        return this;
     }
 }

@@ -9,7 +9,7 @@ function mainLabThree(event)
     globalLab.message = document.querySelector(".header-message");
 
     // testVector2();
-    testLine();
+    // testLine();
 
     // const lineOne = new Line(1, 2, 3, 4);
     // const lineTwo = new Line(5, 6, 7, 8);
@@ -22,7 +22,7 @@ function mainLabThree(event)
 
     // globalLab.message.textContent = "Line successfully loaded!";
 
-    Logger.open();
+    // Logger.open();
 }
 
 function testLine()
@@ -142,8 +142,3 @@ function testVector2()
         log(`Normalized: ${vectorClone}.`);
     }
 }
-
-
-
-
-

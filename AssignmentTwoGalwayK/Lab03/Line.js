@@ -17,24 +17,79 @@ class Line
 
     toString()
     {
-        return `Line: (${this.point.x}, ${this.point.y}) + t(${this.direction.x}, ${this.direction.y})`;
+        return `Line: ${this.getParametricForm()}`;
+    }
+
+    getParametricForm()
+    {
+        return `(${this.point.getFixedX()}, ${this.point.getFixedY()}) ` + 
+            `+ t(${this.direction.getFixedX()}, ${this.direction.getFixedY()})`;
+    }
+
+    getStandardForm()
+    {
+        return `${this.getFixedA()}x + ${this.getFixedB()}y = ${this.getFixedC()}`;
+    }
+
+    getSlopeForm()
+    {
+        return `${this.getFixedA()}x + ${this.getFixedB()}y - ${this.getFixedC()} = ${this.a * this.point.x + this.b * this.point.y - this.c}`;
+    }   
+
+    getFixedA(numDecimal=3)
+    {
+        const numDivide = Math.pow(10, numDecimal);
+        return Math.round(this.a * numDivide) / numDivide; 
+    }
+
+    getFixedB(numDecimal=3)
+    {
+        const numDivide = Math.pow(10, numDecimal);
+        return Math.round(this.b * numDivide) / numDivide; 
+    }
+
+    getFixedC(numDecimal=3)
+    {
+        const numDivide = Math.pow(10, numDecimal);
+        return Math.round(this.c * numDivide) / numDivide; 
+    }
+
+    get a()
+    {
+        return this.direction.y;
+    }
+
+    get b()
+    {
+        return -this.direction.x;
+    }
+
+    get c()
+    {
+        return this.direction.y * this.point.x - this.direction.x * this.point.y;
     }
 
     intersect(that)
     {
-        let a = this.direction.y;
-        let b = -this.direction.x;
-        let c = this.direction.y * this.point.x - this.direction.x * this.point.y;
-        log(`Equation One: ${a}x + ${b}y = ${c}`);
-        log(`Point: ${this.point}`);
-        log(`Direction: ${this.direction}\n`);
+        // let a = this.direction.y;
+        // let b = -this.direction.x;
+        // let c = this.direction.y * this.point.x - this.direction.x * this.point.y;
+        let a = this.a;
+        let b = this.b;
+        let c = this.c;
+        // log(`Equation One Version 1: ${a}x + ${b}y = ${c}`);
+        // log(`Point: ${this.point}`);
+        // log(`Direction: ${this.direction}\n`);
 
-        let d = that.direction.y;
-        let e = -that.direction.x;
-        let f = that.direction.y * that.point.x - that.direction.x * that.point.y;
-        log(`Equation Two: ${d}x + ${e}y = ${f}`);
-        log(`Point: ${that.point}`);
-        log(`Direction: ${that.direction}`);
+        // let d = that.direction.y;
+        // let e = -that.direction.x;
+        // let f = that.direction.y * that.point.x - that.direction.x * that.point.y;
+        let d = that.a;
+        let e = that.b;
+        let f = that.c;
+        // log(`Equation Two: ${d}x + ${e}y = ${f}`);
+        // log(`Point: ${that.point}`);
+        // log(`Direction: ${that.direction}`);
 
         let det = a * e - b * d;
 
@@ -48,7 +103,6 @@ class Line
         {
             return new Vector2(NaN, NaN);
         }
-
     }
 
     isIntersect(that)
@@ -56,16 +110,10 @@ class Line
         let a = this.direction.y;
         let b = -this.direction.x;
         let c = this.direction.y * this.point.x - this.direction.x * this.point.y;
-        log(`Equation One: ${a}x + ${b}y = ${c}`);
-        log(`Point: ${this.point}`);
-        log(`Direction: ${this.direction}\n`);
 
         let d = that.direction.y;
         let e = -that.direction.x;
         let f = that.direction.y * that.point.x - that.direction.x * that.point.y;
-        log(`Equation Two: ${d}x + ${e}y = ${f}`);
-        log(`Point: ${that.point}`);
-        log(`Direction: ${that.direction}`);
 
         let det = a * e - b * d;
 
