@@ -1,0 +1,40 @@
+
+<header> 
+  <h1> SYST 24444 Lab Eleven </h1>
+</header>
+<main> 
+  <h2 class = "header-main"> Students Table </h2>
+  <table> 
+    <tr> 
+      <th class="table-col-1"> 
+        #
+      </th>
+      <th class="table-col-2"> 
+        First Name
+      </th>
+      <th class="table-col-3"> 
+        Last Name
+      </th>
+      <th class="table-col-4"> 
+        Email 
+      </th>
+    </tr>
+    <tr *ngFor = "let student of students; let numIndex = index">
+      <td class = table-col-1> 
+        {{numIndex + 1}}
+      </td>
+      <td class="table-col-2"> 
+        {{student.firstName}}
+      </td>
+      <td class="table-col-3">
+        {{student.lastName}}
+      </td>
+      <td class="table-col-4"> 
+        {{student.email}}
+      </td>
+    </tr>
+  </table>
+</main>
+<footer> 
+  <h2> By Kyle Galway</h2>
+</footer>

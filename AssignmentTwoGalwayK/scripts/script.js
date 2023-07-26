@@ -1,5 +1,14 @@
 "use strict";
 
+/*
+Name: Kyle Galway 
+Email: galwayk@sheridancollege.ca
+Date: June 7th, 2023
+Description: This file provides the main logic for the assignment. It 
+initializes the components of the page and attaches the event listeners to 
+redraw the grid and lines whenever one of the sliders is updated or the page 
+is reset. 
+*/
 const globalObject = {};
 
 const DIM = 10;
@@ -42,6 +51,7 @@ globalObject.Q2.defaultY = -8;
 
 document.addEventListener("DOMContentLoaded", main);
 
+// Main entry point for application on page load. 
 function main()
 {
     console.log("Application loaded!");
@@ -56,12 +66,14 @@ function main()
     initializeGrid();
 }
 
+// Function to initialize grid on page load. 
 function initializeGrid()
 {
     initializeControls();
     handleResize();
 }
 
+// Function to initialize the line objects when the page on page load. 
 function initializeLines()
 {
     const P1 = globalObject.P1.sliders;
@@ -86,6 +98,7 @@ function initializeLines()
     globalObject.arrLines[1] = lineTwo;
 }
 
+// Function to initialize the menu controls on page load. 
 function initializeControls()
 {
     for (const point of globalObject.arrPoints)
@@ -108,11 +121,13 @@ function initializeControls()
     updateControls();
 }
 
+// Function to initialize the intersect label on page load. 
 function initializeIntersect()
 {
     globalObject.intersect = document.querySelector(".intersection");
 }
 
+// Function to update the Line objects whenever a slider is altered.
 function updateLines()
 {
     const P1 = globalObject.P1.sliders;
@@ -122,10 +137,9 @@ function updateLines()
 
     globalObject.arrLines[0].set(P1.x.value, P1.y.value, P2.x.value, P2.y.value);
     globalObject.arrLines[1].set(Q1.x.value, Q1.y.value, Q2.x.value, Q2.y.value);
-    // log(globalObject.arrLines[0]);
-    // log(globalObject.arrLines[1]);
 }
 
+// Function to update a control label when a slider is altered. 
 function updateControls()
 {
     for (const point of globalObject.arrPoints)
@@ -141,6 +155,7 @@ function updateControls()
     handleResize();
 }
 
+// Function to update the Line form displays when a slider is altered. 
 function updateForms()
 {
     const lineOne = globalObject.arrLines[0];
@@ -158,12 +173,14 @@ function updateForms()
     formsTwo.standard.textContent = lineTwo.getStandardForm();
 }
 
+// Function to update the intersect point label when a slider is altered.
 function updateIntersect()
 {
     globalObject.intersect.textContent = 
         globalObject.arrLines[0].intersect(globalObject.arrLines[1]);
 }
 
+// Function to handle a resize when the size of the page is changed. 
 function handleResize()
 {
     globalObject.grid.width = globalObject.grid.clientWidth;
@@ -192,6 +209,7 @@ function handleResize()
     draw();
 }
 
+// Function to draw the grid and grid elements when the page or lines change
 function draw()
 {
     let context = globalObject.grid.getContext("2d");
@@ -218,6 +236,7 @@ function draw()
     context.restore();
 }
 
+// Function to draw the grid and grid lines.
 function drawGrid(context)
 {
     const MAX_X = Math.ceil(globalObject.dimTransX);
@@ -258,6 +277,7 @@ function drawGrid(context)
     }
 }
 
+// Function to draw the grid axis with custom colors. 
 function drawAxis(context)
 {
     const X = globalObject.dimTransX;
@@ -285,6 +305,7 @@ function drawAxis(context)
     context.stroke();
 }
 
+// Function to draw the text on the grid. 
 function drawText(context)
 {
     context.save();
@@ -299,6 +320,7 @@ function drawText(context)
     context.restore();
 }
 
+// Function to draw the Vector2 points on the grid.
 function drawPoints(context)
 {
     const R = 0.5;  
@@ -325,6 +347,7 @@ function drawPoints(context)
     }
 }
 
+// Function to draw the intersection point on the grid.
 function drawIntersect(context)
 {
     const lineOne = globalObject.arrLines[0];
@@ -344,6 +367,7 @@ function drawIntersect(context)
     }
 }
 
+// Function to draw the Line objects on the grid. 
 function drawLines(context)
 {
     let S = 300;

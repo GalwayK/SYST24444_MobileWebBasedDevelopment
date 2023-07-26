@@ -1,0 +1,64 @@
+<!--
+  Name: Kyle Galway 
+  Email: galwayk@sheridancollege.ca
+  Date: July 26th, 2023
+  Description: This is the main HTML file that acts as the view for the application.
+-->
+
+
+<div class = "assignment-3-body"> 
+  <header class = assignment-3-header> 
+    <h1> Assignment Three </h1>
+  </header>
+
+  <main class = "assignment-3-main"> 
+    <h2> Inches to Centimeters Converter </h2>
+    <section>
+      <span class = inputs>
+        <label for = txtInches></label> Inches <input type = "text" name = txtInches [(ngModel)]="txtInches" (ngModelChange)="handleInchesUpdated()" /> 
+
+      <span class = seperator> 
+        &#8644;
+      </span>
+        <input type = "number" name = numCentimeters [(ngModel)]="numCentimeters" (ngModelChange)="handleCentimetersUpdated()" /> 
+        <label for = numCentimeters> Centimeters </label> 
+      </span>
+      <p> Use Fractions:  <input type = checkbox [(ngModel)]="isFraction" (ngModelChange)="handleCentimetersUpdated()"/></p>
+        <div *ngIf="isFraction"> 
+        <p> Simplified: <input type = checkbox [(ngModel)]="isSimplified" (ngModelChange)="handleCentimetersUpdated()"/></p>
+        <p> Base: 
+          <select [(ngModel)]="baseNumber" (ngModelChange)="handleBaseNumberChanged()"> 
+            <option value = 2> 2 </option>
+            <option value = 4> 4 </option>
+            <option value = 8> 8 </option>
+            <option value = 16> 16 </option>
+            <option value = 32> 32 </option>
+            <option value = 64> 64 </option>
+          </select>
+        </p>
+        <aside class = "message-container"></aside>
+      </div>
+    </section>
+    
+
+    <aside class = conversion-chart>
+      <table class = "conversion-table"> 
+        <tr> 
+          <th> Fraction (in) </th>
+          <th> Decimal (in) </th>
+          <th> Metric (cm) </th>
+        </tr>
+        <tr *ngFor="let tableData of arrTableData"> 
+          <td> {{tableData.fraction}} </td>
+          <td> {{tableData.decimal}} </td>
+          <td> {{tableData.metric}} </td>
+        </tr>
+      </table>
+  </aside>
+  </main>
+
+  <footer class = "assignment-3-footer">
+    <h2> By Kyle Galway </h2>
+  </footer>
+</div>
+

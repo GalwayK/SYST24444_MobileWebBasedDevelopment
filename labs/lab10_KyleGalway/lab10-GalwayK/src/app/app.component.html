@@ -1,0 +1,20 @@
+<div class="body">
+  <header> 
+    <h1> SYST 24444 Lab Ten </h1>
+  </header>
+
+  <main> 
+    <h1> Shopping List </h1>
+
+    <div> 
+      <input type = "text" [(ngModel)] = "item"> &nbsp;
+      <input type = "button" (click)="addItem()" value="Add Item">
+    </div>
+
+    <app-child [list]="items"></app-child>
+  </main>
+
+  <footer> 
+      <h2> By Kyle Galway </h2>
+  </footer>
+</div>

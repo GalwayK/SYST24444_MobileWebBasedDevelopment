@@ -44,6 +44,11 @@ article > p, footer >
   font-size: 1.2rem;
 }
 
+.p-name 
+{
+  font-weight: bold;
+}
+
 main 
 {
   min-height: 100vh;
@@ -58,7 +63,8 @@ main
 
   <article> 
     <h2> {{greeting}} </h2>
-    <p> My name is {{name}}, and I am excited to learn Angular! </p>
+    <p> My name is <span class = "p-name"> {{name}} </span>, and I am excited to learn Angular! </p>
+    <p> I made a slight mistake on my first submission, but this one should be all good... I hope! </p>
   </article>
 
   <footer> 

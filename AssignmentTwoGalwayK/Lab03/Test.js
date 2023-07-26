@@ -1,5 +1,13 @@
 "use strict";
 
+/*
+    This file was used to test the Line and Vector 2 classes. 
+    It has no final implementation in the assignment and is left
+    behind to demonstrate some of the verification that went into
+    the classes developed as part of the assignment.
+
+*/
+
 const globalLab = {};
 
 document.addEventListener("DOMContentLoaded", mainLabThree);

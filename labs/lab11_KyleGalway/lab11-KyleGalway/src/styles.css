@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+*
+{
+    margin: 0;
+    width: 100%;
+}
+
+body 
+{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body, footer, header, main
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header, footer 
+{
+    min-height: 10vh;
+    background-color: rgb(5, 173, 179);
+    color: white;
+}
+
+main 
+{
+    min-height: 80vh;
+}
+
+table 
+{
+    text-align: right;
+    max-width: 85%;
+    margin: 24px;
+}
+
+table, tr, th, td 
+{
+    border: thin black solid;
+    border-collapse: collapse;
+    padding: 3px;
+}
+
+.header-main 
+{
+    margin: 12px;
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+.table-col-1
+{
+    max-width: 10%;
+}
+
+.table-col-2, .table-col-3, .table-col-4
+{
+    max-width: 30%;
+}

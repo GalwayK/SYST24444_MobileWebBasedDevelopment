@@ -1,0 +1,49 @@
+.assignment-3-body
+{
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+.assignment-3-header, .assignment-3-footer
+{
+    min-height: 100px;
+}
+
+input 
+{
+    max-width: 20%;
+}
+
+.assignment-3-body, .assignment-3-footer, .assignment-3-header, .assignment-3-main, section
+{
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs 
+{
+    width: 100%;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.assignment-3-footer, .assignment-3-header, section
+{
+    
+}
+
+.assignment-3-main 
+{
+    min-height: 80vh;
+    align-items: center;
+    justify-content: start;
+    min-width: 360px;
+    width: 100%;
+}
+
+.assignment-3-footer 
+{
+}

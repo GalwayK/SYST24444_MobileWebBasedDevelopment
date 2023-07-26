@@ -1,0 +1,28 @@
+
+
+<main class = "body"> 
+
+<header>
+  <h1> Lab 09 </h1>
+</header>
+
+<main> 
+  <h2> Mass Converter </h2>
+  <div> 
+    <input type = "text" [(ngModel)]="lb" (ngModelChange)="convertToKG()"/> 
+      <span> lb = </span>
+    <input type = "text" [(ngModel)]="kg" (ngModelChange)="convertToLB()">
+    <span> kg </span>
+  </div>
+  <p> 
+    Pounds: {{ strLB }}
+  </p>
+  <p> 
+    Kilograms: {{ strKG }}
+  </p>
+</main>
+
+<footer> 
+  <h2> By Kyle Galway </h2>
+</footer>
+</main>
