@@ -1,0 +1,28 @@
+<h1>Shopping List</h1>
+
+<div>
+
+<input type="text" [(ngModel)]="item"> &nbsp;
+<input type="button" (click)="addItem()" value="Add Item">
+
+</div>
+
+<app-child [list]="items"></app-child>
+
+<!-- <div *ngIf="items.length == 0; else empty">
+    The arrays is empty!
+</div>
+<ng-template #empty> 
+    The array is not empty!
+</ng-template> -->
+
+<h3 [ngClass]="{'failed-class' : items.length > 0, 'assigned-class' : items.length == 0}"> This has the success class! </h3>
+
+<h3 [ngStyle]="{'color' : items.length > 0 ? 'red' : 'blue'}"> This is dynamically styled! </h3>
+
+<div [ngSwitch]="true">
+    <span *ngSwitchCase="items.length == 0"> The Array is empty! </span>
+    <span *ngSwitchCaseDefault> The Array is not empty! </span>
+</div>
+
+<app-directives [numberOne]="numOne" [numberTwo]="numTwo" [title]="title"></app-directives>

@@ -1,0 +1,42 @@
+
+<div> 
+    <p> Sort by: <span [textContent]="displaySort"></span></p>
+    <p> First Name: <input type = radio name="sortName" value="firstName" (change)="sortFirstName()"> </p>
+    <p> Last Name: <input type="radio" name="sortName" value="lastName" (change)="sortLastName()"  [defaultChecked]="true"></p>
+</div>
+
+<table> 
+    <thead> 
+        <tr> 
+            <th> 
+                # 
+            </th>
+            <th> 
+                {{ displayOrder[0] }}
+            </th>
+            <th> 
+                {{ displayOrder[1] }}
+            </th>
+        </tr>
+        <tr *ngFor = "let student of arrStudents; let rank = index">
+            <td> {{rank + 1}} </td>
+            <td> {{ student[sortOrder[0]] }} </td>
+            <td> {{ student[sortOrder[1]] }} </td>
+        </tr>
+    </thead>
+</table>
+
+
+<table mat-table [dataSource]="arrStudents"> 
+    <ng-container [matColumnDef]="displayOrder[0]">
+        <mat-header-cell *matHeaderCellDef> {{ displayOrder[0] }} </mat-header-cell>
+        <mat-cell *matCellDef="let student"> {{ student[sortOrder[0]] }} </mat-cell>
+    </ng-container>
+    <ng-container [matColumnDef]="displayOrder[1]">
+        <mat-header-cell *matHeaderCellDef> {{ displayOrder[1] }} </mat-header-cell>
+        <mat-cell *matCellDef="let student"> {{ student[sortOrder[1]] }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayOrder"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayOrder"></mat-row>
+</table>

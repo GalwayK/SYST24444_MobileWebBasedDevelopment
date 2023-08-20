@@ -1,0 +1,19 @@
+* 
+{
+    text-align: center;
+}
+
+table, tr, th, td 
+{
+    border: thin black solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+main 
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

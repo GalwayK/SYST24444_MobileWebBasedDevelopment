@@ -1,0 +1,53 @@
+.main-header, .main-footer, .app-main
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-form-field 
+{
+    width: 100%;
+}
+
+.app-main
+{
+    justify-content: space-between;
+}
+
+.table-name
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.table-row:hover
+{
+    background-color: lightgray;
+    cursor:pointer;
+}
+
+.app-main
+{
+    min-height: 100vh;
+}
+
+.main-table
+{
+    width: 90%;
+}
+
+.main-header
+{
+    font-size: 1.4rem;
+}
+
+.main-header, .main-footer
+{
+    min-height: 10vh;
+}

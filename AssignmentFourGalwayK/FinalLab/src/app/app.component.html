@@ -1,0 +1,13 @@
+<mat-form-field>
+  <input matInput placeholder="Enter your name: " [(ngModel)]="text">
+</mat-form-field>
+
+&nbsp;
+
+<button mat-raised-button color="primary" (click)="openDialog()"> 
+  Open Button 
+</button>
+
+<p> 
+  Dialog Response: {{ response }}
+</p>

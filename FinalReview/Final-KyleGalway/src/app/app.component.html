@@ -1,0 +1,42 @@
+<main>
+  <header> 
+    <h1> {{ title }} </h1>
+  </header>
+
+  <h3 *ngIf="arrCities"> Number of Cities:  {{arrCities.length}} </h3>
+  <div> {{studentName}} || {{studentNumber}} </div>
+
+  <app-population [arrCities]="arrCities"></app-population>
+
+  <footer> 
+    By Kyle Galway
+  </footer>
+</main>
+
+
+
+<!-- <table mat-table [dataSource]="arrCities"> 
+
+  <ng-container [matColumnDef]="displayOrder[0]">
+      <mat-header-cell *matHeaderCellDef> {{ displayOrder[0] }} </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{ city['Name'] }} </mat-cell>
+  </ng-container>
+
+  <ng-container [matColumnDef]="displayOrder[1]">
+      <mat-header-cell *matHeaderCellDef> {{ displayOrder[1] }} </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{ city['Population']}} </mat-cell>
+  </ng-container>
+
+  <ng-container [matColumnDef]="displayOrder[2]">
+    <mat-header-cell *matHeaderCellDef> {{ displayOrder[2] }} </mat-header-cell>
+    <mat-cell *matCellDef="let city"> {{ city['PopulationDensity'] }} </mat-cell>
+  </ng-container>
+
+<ng-container [matColumnDef]="displayOrder[3]">
+    <mat-header-cell *matHeaderCellDef> {{ displayOrder[3] }} </mat-header-cell>
+    <mat-cell *matCellDef="let city"> {{ city['Type']}} </mat-cell>
+</ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayOrder"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayOrder"></mat-row>
+</table> -->

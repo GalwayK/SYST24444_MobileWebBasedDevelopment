@@ -1,0 +1,50 @@
+main, .container-button
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+main 
+{
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+h2
+{
+    font-size: 1.3rem;
+}
+
+img 
+{
+    margin: 4px;
+    max-width: 95%;
+}
+
+.container-button 
+{
+    width: 100%;
+}
+
+fieldset
+{
+    margin: 10px;
+}
+
+p 
+{
+    width: 80%;
+    text-align: left;
+}
+
+fieldset
+{
+    margin: 8px;
+}
+
+legend
+{
+    text-align: center;
+}

@@ -1,0 +1,52 @@
+<main class="app-main"  *ngIf="arrDisplay != null"> 
+  <mat-toolbar class="main-header">
+    <span> {{ strTitle }} </span>
+  </mat-toolbar>
+
+  <span class="main-table">
+    <mat-form-field appearance="fill">
+      <mat-label> Country Filters: </mat-label>
+      <input matInput placeholder="Enter filter keywords..." [(ngModel)]="strFilter" (keyup)="handleFilterEvent($event)">
+    </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" #table matSort (matSortChange)="handleSortChange($event)">
+    <ng-container [matColumnDef]="arrFields[0]">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ arrColumns[0] }} </mat-header-cell>
+      <mat-cell *matCellDef="let country">
+        <span class="table-name">
+          <img src="{{ getFlagImage(country['Code2']) }}" width="50px"> 
+          <span> {{ country["Name"] }} </span>
+        </span> 
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container [matColumnDef]="arrFields[1]">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ arrColumns[1] }} </mat-header-cell>
+      <mat-cell *matCellDef="let country"> {{ country["Continent"]}} </mat-cell>
+    </ng-container>
+  
+    <ng-container [matColumnDef]="arrFields[2]">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ arrColumns[2] }} </mat-header-cell>
+      <mat-cell *matCellDef="let country"> {{ country['SurfaceArea'] }} </mat-cell>
+    </ng-container>
+    
+    <ng-container [matColumnDef]="arrFields[3]">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ arrColumns[3] }} </mat-header-cell>
+      <mat-cell *matCellDef="let country"> {{ country['Population']}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="arrFields"></mat-header-row>
+    <mat-row class="table-row" *matRowDef="let row; columns: arrFields" (click)="openDialog(row)"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 50, 100, 300]"
+                length="{{ arrCountries.length }}"
+                 showFirstLastButtons
+                 (page) = "handlePageEvent($event)"
+                 aria-label="Items per page: " #paginator>
+  </mat-paginator>
+</span>
+
+  <footer class="main-footer"> 
+    <button mat-button (click)="showCredits($event)"> Credits </button>
+  </footer>
+</main>

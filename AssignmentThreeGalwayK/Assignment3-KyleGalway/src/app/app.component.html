@@ -1,3 +1,4 @@
+
 <!--
   Name: Kyle Galway 
   Email: galwayk@sheridancollege.ca
@@ -12,21 +13,32 @@
   </header>
 
   <main class = "assignment-3-main"> 
-    <h2> Inches to Centimeters Converter </h2>
-    <section>
+    <h2 class="main-header"> Inches to <span> {{ txtCurrentUnit }} </span> Converter </h2>
+    <section class = main-converter>
+
       <span class = inputs>
         <label for = txtInches></label> Inches <input type = "text" name = txtInches [(ngModel)]="txtInches" (ngModelChange)="handleInchesUpdated()" /> 
 
       <span class = seperator> 
         &#8644;
       </span>
-        <input type = "number" name = numCentimeters [(ngModel)]="numCentimeters" (ngModelChange)="handleCentimetersUpdated()" /> 
-        <label for = numCentimeters> Centimeters </label> 
+
+        <input type = "number" name = numCentimeters [(ngModel)]="numMetric" (ngModelChange)="handleCentimetersUpdated()" /> 
+        
+        <label for = numCentimeters> {{txtCurrentUnit}} </label> 
+
       </span>
-      <p> Use Fractions:  <input type = checkbox [(ngModel)]="isFraction" (ngModelChange)="handleCentimetersUpdated()"/></p>
+      <fieldset class = options>
+        <legend> Options </legend>
+        <p class = option><span> Metric Unit: </span> <select [(ngModel)]="numCurrentMetric" (ngModelChange)="handleMetricUnitChanged()">
+          <option value = 0> Millimeters </option>
+          <option value = 1> Centimeters </option>
+          <option value = 2> Meters </option>
+        </select></p>
+        <p class = option><span> Use Fractions:  </span><input type = checkbox [(ngModel)]="isFraction" (ngModelChange)="handleCentimetersUpdated()"/></p>
         <div *ngIf="isFraction"> 
-        <p> Simplified: <input type = checkbox [(ngModel)]="isSimplified" (ngModelChange)="handleCentimetersUpdated()"/></p>
-        <p> Base: 
+        <p class = option><span> Simplified: </span><input type = checkbox [(ngModel)]="isSimplified" (ngModelChange)="handleCentimetersUpdated()"/></p>
+        <p class = option> <span> Base: </span>
           <select [(ngModel)]="baseNumber" (ngModelChange)="handleBaseNumberChanged()"> 
             <option value = 2> 2 </option>
             <option value = 4> 4 </option>
@@ -36,8 +48,9 @@
             <option value = 64> 64 </option>
           </select>
         </p>
-        <aside class = "message-container"></aside>
       </div>
+      </fieldset>
+      <aside class = "message-container"></aside>
     </section>
     
 
@@ -46,7 +59,7 @@
         <tr> 
           <th> Fraction (in) </th>
           <th> Decimal (in) </th>
-          <th> Metric (cm) </th>
+          <th> Metric ({{txtCurrentShort}}) </th>
         </tr>
         <tr *ngFor="let tableData of arrTableData"> 
           <td> {{tableData.fraction}} </td>

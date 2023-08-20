@@ -1,0 +1,10 @@
+<h1> Mass Coverter </h1>
+
+<div> 
+  <input type = "text" [(ngModel)] = "lb" (ngModelChange)="convertToPound()">
+  = 
+  <input type = "text" [(ngModel)] = "kg" (ngModelChange)="convertToKilogram()">
+</div>
+
+<p> Pounds: {{lb}} lb </p>
+<p> Kilograms: {{kg}} kg </p>

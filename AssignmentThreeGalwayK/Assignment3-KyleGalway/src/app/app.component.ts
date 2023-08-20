@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 
+/*
+  Name: Kyle Galway 
+  Email: galwayk@sheridancollege.ca
+  Date: July 26th, 2023
+  Description: This is the main component file that handles the application logic.
+  */
+
 const CONVERSION_FACTOR: number = 2.54;
 
 @Component({
@@ -8,9 +15,17 @@ const CONVERSION_FACTOR: number = 2.54;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  arrMetricNames = ["Millimeters", "Centimeters", "Meters"];
+  arrMetricUnits = [10, 1, .01];
+  arrMetricShort = ["mm", "cm", "m"];
+  
+  numCurrentMetric = 1;
+  numCurrentUnits: number = this.arrMetricUnits[this.numCurrentMetric];
+  txtCurrentUnit: string = this.arrMetricNames[this.numCurrentMetric];
+  txtCurrentShort: string = this.arrMetricShort[this.numCurrentMetric];
+  
   txtInches: string = "0";
-  numCentimeters: number = 0.0;
+  numMetric: number = 0.0;
   arrTableData: Array<any> = [];
   isSimplified: boolean = false;
   isFraction: boolean = true;
@@ -23,6 +38,16 @@ export class AppComponent {
     this.constructConversionTable();
   }
 
+  get numCentimeters(): number
+  {
+    return this.numMetric / this.numCurrentUnits;
+  }
+
+  set numCentimeters(value)
+  {
+    this.numMetric = this.roundDecimal(value * this.numCurrentUnits);
+  }
+
   constructConversionTable()
   {
     this.arrTableData = [];
@@ -32,20 +57,18 @@ export class AppComponent {
       const numInches = this.toDecimal(strFraction);
 
       let strSimplified = this.simplifyFraction(strFraction);
-      console.log(`Simplified  "${strSimplified}"`);
-      console.log(`Fraction  "${strFraction}"`);
-      console.log(`Equals: ${strFraction == strSimplified}`);
+
       strFraction = strFraction == strSimplified
         ? strFraction
         : `${strFraction} or ${strSimplified}`;
 
-      const numCentimeters = this.roundDecimal(this.convertInchToCentimeters(numInches));
+      const numMetric = this.convertInchToCentimeters(numInches) * this.numCurrentUnits;
 
       const objData = 
       {
         fraction: strFraction, 
         decimal: numInches, 
-        metric: numCentimeters
+        metric: this.roundDecimal(numMetric, 4)
       }
       this.arrTableData.push(objData);
     }
@@ -58,7 +81,7 @@ export class AppComponent {
     for (const testDecimal of arrTestDecimals)
     {
       const strFraction = this.toFraction(testDecimal);
-      const numCentimeters = this.roundDecimal(this.convertInchToCentimeters(testDecimal));
+      const numCentimeters = this.convertInchToCentimeters(testDecimal);
 
       console.log(`toFraction(${testDecimal}) -> "${strFraction}" (${numCentimeters} cm)`);
     }
@@ -71,9 +94,9 @@ export class AppComponent {
     for (const testFraction of arrTestFractions)
     {
       const decimalValue = this.toDecimal(testFraction);
-      const numCentimeters = this.roundDecimal(this.convertInchToCentimeters(decimalValue));
+      const numCentimeters = this.convertInchToCentimeters(decimalValue);
 
-      console.log(`toDecimal("${testFraction}") -> ${decimalValue} (${this.roundDecimal(numCentimeters)} cm)`);
+      console.log(`toDecimal("${testFraction}") -> ${this.roundDecimal(decimalValue)} (${this.roundDecimal(this.roundDecimal(numCentimeters))} cm)`);
     }
   }
 
@@ -133,7 +156,7 @@ export class AppComponent {
     }
     else 
     {
-      console.log("Error, fraction is not a number!");
+      console.error("Error, fraction is not a number!");
     }
 
     return numDecimal;
@@ -182,29 +205,13 @@ export class AppComponent {
     return strFraction;
   }
 
-  handleInchesUpdated()
-  {
-    let numInches = this.toDecimal(this.txtInches);
-    if (Number.isNaN(numInches))
-    {
-      return;
-    }
-    this.numCentimeters = this.roundDecimal(this.convertInchToCentimeters(numInches));
-  }
-
-  handleBaseNumberChanged()
-  {
-    this.handleCentimetersUpdated();
-    this.constructConversionTable();
-  }
-
   simplifyFraction(txtFraction: string): string
   {
     let arrTokens = txtFraction.split(" ");
     let strUnit = "";
     let arrParts;
 
-    if (Number(txtFraction)|| txtFraction == "0")
+    if (Number(txtFraction) || txtFraction == "0")
     {
       return txtFraction;
     }
@@ -232,16 +239,27 @@ export class AppComponent {
     }
     else if (numOne % 2 == 0 && numTwo % 2 == 0)
     {
-      return this.simplifyFraction(`${numOne / 2}/${numTwo / 2}`);
+      return this.simplifyFraction(`${strUnit}${numOne / 2}/${numTwo / 2}`);
     }
     return `${strUnit}${numOne}/${numTwo}`;
   }
 
+  
+  handleInchesUpdated()
+  {
+    let numInches = this.toDecimal(this.txtInches);
+    if (Number.isNaN(numInches))
+    {
+      return;
+    }
+    this.numCentimeters = this.convertInchToCentimeters(numInches);
+  }
+  
   handleCentimetersUpdated()
   {
     let numInches = this.convertCentimetersToInches(this.numCentimeters);
 
-    let txtInches = `${numInches}`;
+    let txtInches = `${this.roundDecimal(numInches)}`;
     if (this.isFraction)
     {
       txtInches = this.toFraction(numInches);
@@ -256,5 +274,27 @@ export class AppComponent {
       return;
     }
     this.txtInches = txtInches;
+  }
+
+  refreshApplicationData()
+  {
+    this.constructConversionTable();
+    this.handleInchesUpdated();
+  }
+
+  handleBaseNumberChanged()
+  {
+    this.refreshApplicationData();
+  }
+
+  handleMetricUnitChanged()
+  {
+    let centimeters = this.numCentimeters;
+    this.numCurrentUnits = this.arrMetricUnits[this.numCurrentMetric];
+    this.txtCurrentUnit = this.arrMetricNames[this.numCurrentMetric];
+    this.txtCurrentShort = this.arrMetricShort[this.numCurrentMetric];
+    this.numMetric = this.roundDecimal(centimeters * this.numCurrentUnits);
+
+    this.refreshApplicationData();
   }
 }

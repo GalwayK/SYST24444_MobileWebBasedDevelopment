@@ -1,0 +1,37 @@
+<main>
+<fieldset *ngIf="arrCities != null">
+    <legend> {{ country.Name }} </legend>
+    <p> Code: {{ country.Code }} | {{ country.Code2 }} </p>
+    <p> Continent: {{ country.Continent }} </p>
+    <p> Region: {{ country.Region }} </p>
+    <p> Surface Area (km2): {{ country.SurfaceArea }} </p>
+    <p> Population: {{ country.Population }} </p>
+    <p> GNP: {{ country.GNP }} </p>
+    <p> Map: </p>
+    <img src = "{{ imgSrc }}">;
+
+    <mat-table [dataSource]="arrCities">
+        <ng-container [matColumnDef]="arrFields[0]">
+          <mat-header-cell *matHeaderCellDef> {{ arrFields[0] }} </mat-header-cell>
+          <mat-cell *matCellDef="let city"> {{ city['Name'] }} </mat-cell>
+        </ng-container>
+      
+        <ng-container [matColumnDef]="arrFields[1]">
+          <mat-header-cell *matHeaderCellDef> {{ arrFields[1] }} </mat-header-cell>
+          <mat-cell *matCellDef="let city"> {{ city['District'] }} </mat-cell>
+        </ng-container>
+      
+        <ng-container [matColumnDef]="arrFields[2]">
+          <mat-header-cell *matHeaderCellDef> {{ arrFields[2] }} </mat-header-cell>
+          <mat-cell *matCellDef="let city"> {{ city['Population'] }} </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="arrFields"></mat-header-row>
+        <mat-row class="table-row" *matRowDef="let row; columns: arrFields" ></mat-row>
+      </mat-table>
+
+      <div class = "container-button">
+        <button mat-raised-button color="primary" [mat-dialog-close]> Close </button>
+    </div>
+</fieldset>
+</main>
